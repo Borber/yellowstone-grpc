@@ -4,7 +4,7 @@ use {
 };
 
 fn main() -> anyhow::Result<()> {
-    std::env::set_var("PROTOC", protobuf_src::protoc());
+    _ = std::env::var("PROTOC").expect("PROTOC not found");
 
     // build protos
     tonic_build::configure().compile_protos(&["proto/geyser.proto"], &["proto"])?;
